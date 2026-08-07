@@ -559,9 +559,9 @@ S.help = ()=>page(`<div class="pad" style="padding-top:8px">
   <div class="h2" style="font-size:24px">Help</div><div class="muted" style="font-size:13px;margin-top:2px">Recovery resources and emergency support</div>
   <div class="card" style="margin-top:16px;background:var(--crisis);border:0;color:#fff;display:flex;align-items:center;gap:13px;cursor:pointer" data-go="relapse"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:20px">⛑</div><div style="flex:1"><b style="font-size:15px">Help, I’ve Relapsed</b><div style="font-size:12px;opacity:.9">Immediate support when you need it most</div></div><span style="opacity:.85;font-size:20px">›</span></div>
   <div style="margin-top:13px;background:var(--panel);border-radius:12px;padding:13px;font-size:12.5px;color:var(--ink-soft)"><b style="color:var(--charcoal)">You are not alone.</b> Recovery is a journey, and setbacks are part of the process.</div>
-  <div class="card" style="margin-top:13px;background:linear-gradient(135deg,var(--gold),#C98A3A);border:0;color:#fff;display:flex;align-items:center;gap:13px;cursor:pointer" data-go="panic"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:20px">⚡</div><div style="flex:1"><b style="font-size:15px">Panic Button</b><div style="font-size:12px;opacity:.9">Reach your recovery team immediately</div></div><span style="opacity:.85;font-size:20px">›</span></div>
+  <div class="card" style="margin-top:13px;background:linear-gradient(135deg,var(--gold),#C98A3A);border:0;color:#fff;display:flex;align-items:center;gap:13px;cursor:pointer" data-panic="1"><div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:20px">⚡</div><div style="flex:1"><b style="font-size:15px">Panic Button</b><div style="font-size:12px;opacity:.9">Reach your recovery team immediately</div></div><span style="opacity:.85;font-size:20px">›</span></div>
   <div class="card" style="margin-top:13px;display:flex;align-items:center;gap:13px;cursor:pointer" data-go="panic-log"><div style="width:42px;height:42px;border-radius:12px;background:var(--sand);display:grid;place-items:center;font-size:18px">🕐</div><div style="flex:1"><b style="font-size:14px;color:var(--charcoal)">Panic Event Log</b><div class="muted" style="font-size:12px">View support activation history</div></div><span class="muted">›</span></div>
-  <div style="margin-top:14px;background:var(--panel);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7"><b style="color:var(--charcoal)">24/7 Crisis Resources:</b><br>National Crisis Line — <u>Call or text 988</u><br>SAMHSA National Helpline — <u>1-800-662-4357</u><br>Crisis Text Line</div>
+  <div style="margin-top:14px;background:var(--panel);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7"><b style="color:var(--charcoal)">24/7 Crisis Resources:</b><br>National Crisis Line — <b>988</b><br>SAMHSA National Helpline — <b>1-800-662-4357</b><br>Crisis Text Line — <b>741741</b><br>Emergency — <b>911</b><br>National Rehab Hotline — <b>1-866-210-1303</b></div>
 </div>`,{nav:'help'});
 
 /* ---------- I HAVE RELAPSED ---------- */
@@ -602,7 +602,7 @@ S.panic = ()=>page(`${bar('Panic','help')}<div class="pad">
 </div>`,{nav:'help'});
 
 /* ---------- PANIC · CONFIRMED (in California) ---------- */
-S['panic-confirm'] = ()=>page(`${bar('Support Requested','panic')}<div class="pad" style="display:flex;flex-direction:column;min-height:604px;padding-top:20px">
+S['panic-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="display:flex;flex-direction:column;min-height:604px;padding-top:20px">
   <div style="text-align:center">
     <div class="confirm-hero"><span class="confirm-ring"></span><span class="confirm-ring r2"></span><div class="confirm-orb">💚</div></div>
     <div class="lab sage" style="justify-content:center;margin-top:20px">Support requested</div>
@@ -613,10 +613,11 @@ S['panic-confirm'] = ()=>page(`${bar('Support Requested','panic')}<div class="pa
   <div style="flex:1;min-height:20px"></div>
   <a href="${telHref()}" style="text-decoration:none"><button class="btn btn-sage">📞 Call ${ORG.name} now</button></a>
   <div style="margin-top:13px;text-align:center;font-size:12px;color:var(--ink-soft)">If you're in immediate danger, call <b>911</b>.</div>
+  <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--ink-faint)">Demo · simulate location: <span class="locpill${state.simLoc!=='Other'?' on':''}" data-simloc="California">California</span> <span class="locpill${state.simLoc==='Other'?' on':''}" data-simloc="Other">Other state</span></div>
 </div>`,{nav:'help'});
 
 /* ---------- PANIC · OUTSIDE California (National Rehab Foundation) ---------- */
-S['panic-outside'] = ()=>page(`${bar('Support Requested','panic')}<div class="pad center-t" style="padding-top:18px">
+S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad center-t" style="padding-top:18px">
   <div style="width:78px;height:78px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,var(--rose-soft) 58%,var(--rose) 130%);box-shadow:var(--shRose);display:grid;place-items:center;font-size:34px">💗</div>
   <div class="h2" style="margin-top:18px;font-size:21px">Help is available</div>
   <div class="muted" style="font-size:13.5px;margin-top:8px;line-height:1.6">${ORG.name} serves clients in California, so we've connected you with the ${NATIONAL.name}. Give them a call — they'll support you and help you find care near you. You are not alone.</div>
@@ -625,6 +626,7 @@ S['panic-outside'] = ()=>page(`${bar('Support Requested','panic')}<div class="pa
   </div>
   <a href="${telClean(NATIONAL.phone)}" style="text-decoration:none"><button class="btn btn-sage" style="margin-top:16px">📞 Call ${NATIONAL.name}</button></a>
   <div style="margin-top:14px;font-size:12px;color:var(--ink-soft)">In a crisis, call <b>911</b> or the <b>988</b> Lifeline any time.</div>
+  <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--ink-faint)">Demo · simulate location: <span class="locpill${state.simLoc!=='Other'?' on':''}" data-simloc="California">California</span> <span class="locpill${state.simLoc==='Other'?' on':''}" data-simloc="Other">Other state</span></div>
 </div>`,{nav:'help'});
 
 /* ---------- PANIC EVENT LOG ---------- */
@@ -779,7 +781,7 @@ function startBreath(){
 vp.addEventListener('click', e=>{
   const tl=e.target.closest('[data-tool]'); if(tl){ state.tool=tl.getAttribute('data-tool'); }
   const md=e.target.closest('[data-mode]'); if(md){ state.mode=md.getAttribute('data-mode'); }
-  const sl=e.target.closest('[data-simloc]'); if(sl){ state.simLoc=sl.getAttribute('data-simloc'); vp.innerHTML=S.panic(); return; }
+  const sl=e.target.closest('[data-simloc]'); if(sl){ state.simLoc=sl.getAttribute('data-simloc'); show(detectLocation()==='California'?'panic-confirm':'panic-outside', false); return; }
   const pn=e.target.closest('[data-panic]'); if(pn){ show(detectLocation()==='California'?'panic-confirm':'panic-outside'); return; }
   const go=e.target.closest('[data-go]'); if(go){ show(go.getAttribute('data-go')); return; }
   const pick=e.target.closest('[data-pick]'); if(pick){ QUESTIONS[state.assess].sel=+pick.getAttribute('data-pick'); vp.innerHTML=S.assess(); return; }
