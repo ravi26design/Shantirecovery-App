@@ -612,9 +612,7 @@ S['panic-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad
   <div class="confirm-note" style="margin-top:24px"><div class="ic">🌿</div><div>Take a slow breath. Someone from the team will contact you shortly to make sure you get the support you need.</div></div>
   <div style="flex:1;min-height:20px"></div>
   <a href="${telHref()}" style="text-decoration:none"><button class="btn btn-sage">📞 Call ${ORG.name} now</button></a>
-  <div style="margin-top:13px;text-align:center;font-size:12px;color:var(--ink-soft)">If you're in immediate danger, call <b>911</b>.</div>
-  <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--ink-faint)">Demo · simulate location: <span class="locpill${state.simLoc!=='Other'?' on':''}" data-simloc="California">California</span> <span class="locpill${state.simLoc==='Other'?' on':''}" data-simloc="Other">Other state</span></div>
-</div>`,{nav:'help'});
+  <div style="margin-top:13px;text-align:center;font-size:12px;color:var(--ink-soft)">If you're in immediate danger, call <b>911</b>.</div></div>`,{nav:'help'});
 
 /* ---------- PANIC · OUTSIDE California (National Rehab Foundation) ---------- */
 S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad center-t" style="padding-top:18px">
@@ -625,9 +623,7 @@ S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad
     <div class="contact-line"><div class="ic">📞</div><div class="tx"><small>Call</small><b>${NATIONAL.phone}</b></div></div>
   </div>
   <a href="${telClean(NATIONAL.phone)}" style="text-decoration:none"><button class="btn btn-sage" style="margin-top:16px">📞 Call ${NATIONAL.name}</button></a>
-  <div style="margin-top:14px;font-size:12px;color:var(--ink-soft)">In a crisis, call <b>911</b> or the <b>988</b> Lifeline any time.</div>
-  <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--ink-faint)">Demo · simulate location: <span class="locpill${state.simLoc!=='Other'?' on':''}" data-simloc="California">California</span> <span class="locpill${state.simLoc==='Other'?' on':''}" data-simloc="Other">Other state</span></div>
-</div>`,{nav:'help'});
+  <div style="margin-top:14px;font-size:12px;color:var(--ink-soft)">In a crisis, call <b>911</b> or the <b>988</b> Lifeline any time.</div></div>`,{nav:'help'});
 
 /* ---------- PANIC EVENT LOG ---------- */
 S['panic-log'] = ()=>page(`${bar('Panic Event Log','help')}<div class="pad">
