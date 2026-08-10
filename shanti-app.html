@@ -581,26 +581,6 @@ S.relapse = ()=>page(`${bar('I Have Relapsed','help')}<div class="pad">
   <div style="margin-top:14px;background:var(--panel);border-radius:12px;padding:13px;font-size:12px;color:var(--ink-soft);line-height:1.6">If you are in immediate danger, call <b>911</b>. You can also call or text the <b>988</b> Suicide &amp; Crisis Lifeline any time.</div>
 </div>`,{nav:'help'});
 
-/* ---------- PANIC ---------- */
-S.panic = ()=>page(`${bar('Panic','help')}<div class="pad">
-  <div class="card center-t" style="background:linear-gradient(160deg,var(--gold),#C98A3A);border:0;color:#fff">
-    <div style="font-size:30px">⚡</div>
-    <div class="h2" style="font-size:19px;margin-top:6px;color:#fff">Take a breath. Help is one tap away.</div>
-    <div style="font-size:13px;margin-top:7px;line-height:1.55;opacity:.95">Reach ${ORG.name} directly. We connect you to your own recovery team — never an external directory.</div>
-  </div>
-  <div class="lab sage" style="margin:18px 0 8px">CONTACT ${ORG.name.toUpperCase()}</div>
-  <div class="orgname"><div class="badge">🌿</div><div><b style="font-size:16px;color:var(--charcoal)">${ORG.name}</b><div class="muted" style="font-size:12px">${ORG.tagline}</div></div></div>
-  ${orgContactBlock()}
-  <button class="btn btn-primary" style="margin-top:14px" data-panic="1">⚡ Notify the ${ORG.name} Team</button>
-  <div class="cta">
-    <a href="${telHref()}"><button class="btn btn-sage" style="width:100%">📞 Call Now</button></a>
-    <a href="${mailHref('Panic — I need support now')}"><button class="btn btn-out" style="width:100%">✉️ Email</button></a>
-  </div>
-  <div style="margin-top:12px;font-size:12px;color:var(--ink-soft);text-align:center;line-height:1.6">Notifying the team emails ${ORG.name} your details and location so they can reach out to you directly.</div>
-  <div style="margin-top:14px;background:var(--panel);border-radius:12px;padding:13px;font-size:12px;color:var(--ink-soft);line-height:1.6">In a medical emergency, call <b>911</b>. The <b>988</b> Suicide &amp; Crisis Lifeline is available 24/7.</div>
-  <div style="margin-top:14px;text-align:center;font-size:11px;color:var(--ink-faint)">Demo · simulate location: <span class="locpill${state.simLoc!=='Other'?' on':''}" data-simloc="California">California</span> <span class="locpill${state.simLoc==='Other'?' on':''}" data-simloc="Other">Other state</span></div>
-</div>`,{nav:'help'});
-
 /* ---------- PANIC · CONFIRMED (in California) ---------- */
 S['panic-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="display:flex;flex-direction:column;min-height:604px;padding-top:20px">
   <div style="text-align:center">
@@ -736,7 +716,7 @@ const ORDER=[
   ['— Trigger —',null],['trigger-home','Trigger · Home'],['trigger-1','Trigger · Step 1'],['trigger-2','Trigger · Step 2'],['trigger-3','Trigger · Logged'],['trigger-history','Trigger History'],
   ['— Journal —',null],['journal','Journal'],['journal-new','Journal · New Entry'],
   ['— Safety —',null],['safety','Safety Plan'],['safety-edit','Safety Plan · Edit'],
-  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['panic','Panic'],['panic-confirm','Panic · Confirmed (CA)'],['panic-outside','Panic · Outside CA'],['panic-log','Panic Event Log'],
+  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['panic-confirm','Panic · Confirmed (CA)'],['panic-outside','Panic · Outside CA'],['panic-log','Panic Event Log'],
   ['— Community —',null],['community','Community'],['community-comments','Comments'],['community-new','New Post'],
   ['— Profile —',null],['profile','Profile'],['profile-assessments','Assessment History'],['profile-saved','Saved Statements'],['profile-contacts','Emergency Contacts'],
   ['— Wellness —',null],['wellness','Wellness Tools'],['breathwork','Breathwork · Guided'],['wellness-detail','Wellness · Detail'],['wellness-player','Wellness · Player'],['wellness-complete','Session Complete'],
