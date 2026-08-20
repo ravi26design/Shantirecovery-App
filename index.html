@@ -15,7 +15,7 @@
 <style>
   :root{
     /* blush — the primary brand accent */
-    --rose:#CBA595; --rose-deep:#9A6D5C; --rose-soft:#E5CDBF; --rose-tint:#F0DDD1; --rose-wash:#FAF0E9;
+    --rose:#C9A49E; --rose-deep:#98685F; --rose-soft:#E6CDC8; --rose-tint:#F1DEDA; --rose-wash:#FBF1EE;
     /* ink */
     --charcoal:#2F2B28; --ink:#2A2724; --ink-soft:#6B605A; --ink-faint:#A2958C;
     /* sage — the calm/secondary accent */
@@ -24,7 +24,7 @@
     /* --screen is the flat app canvas; cards sit on it in pure white.
        Keeping the canvas FLAT (no gradients) is what makes the cards read crisply. */
     --white:#FFFFFF; --screen:#F3F0EC; --off-white:#FDFAF6; --cream:#FDFAF6;
-    --sand:#EFE6DD; --sand-deep:#E3D6C9;
+    --sand:#EFE7E2; --sand-deep:#E2D6D0;
     --line:#EDE6DE; --line-soft:#F4EEE8; --panel:#F7F1EA;
     --gold:#C9913D; --gold-soft:#FBEBD3; --crisis:#B85345; --good:#63855E;
     --lav:#A99BC9; --lav-soft:#E7E0F1; --lav-wash:#F3EFF9;
@@ -58,9 +58,9 @@
   *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   body{ font-family:"Inter",system-ui,sans-serif; color:var(--ink); position:relative;
     background:
-      radial-gradient(880px 520px at 12% -8%, rgba(203,165,149,.40), transparent 62%),
+      radial-gradient(880px 520px at 12% -8%, rgba(201,164,158,.40), transparent 62%),
       radial-gradient(720px 560px at 106% 6%, rgba(140,156,132,.17), transparent 58%),
-      linear-gradient(180deg,#F7EFE8 0%,#EADCD0 52%,#E2D2C5 100%);
+      linear-gradient(180deg,#F6EFEC 0%,#E9DAD5 52%,#DFCFCA 100%);
     background-attachment:fixed; min-height:100vh;
     display:flex; flex-direction:column; align-items:center; gap:16px; padding:26px 16px 60px; -webkit-font-smoothing:antialiased; }
   body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
@@ -682,7 +682,7 @@ const telHref  = ()=>'tel:'+ORG.phone.replace(/[^0-9+]/g,'');
 const mailHref = (subj)=>'mailto:'+ORG.email+'?subject='+encodeURIComponent(subj);
 
 /* National fallback shown when the user is outside California */
-const NATIONAL = { name:'National Rehab Foundation', phone:'1-866-210-1303' };
+const NATIONAL = { name:'Rehab Hotline', phone:'1-866-210-1303' };
 const telClean = (p)=>'tel:'+p.replace(/[^0-9+]/g,'');
 
 /* Location gate — swap this stub for real geolocation (navigator.geolocation + reverse geocode) in production. */
@@ -1288,9 +1288,9 @@ S.help = ()=>page(`<div class="pad" style="padding-top:8px">
        box-shadow:0 2px 4px rgba(150,60,48,.14), 0 12px 26px -12px rgba(184,83,69,.5), 0 26px 46px -24px rgba(184,83,69,.45)">
     <div style="font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.3">You are not alone.<br>Reach out - it's a strength.</div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-      <div class="glassrow" data-panic="1">
+      <div class="glassrow" data-call="988">
         <div class="gi">${ic('zap',{s:20,w:2})}</div>
-        <div style="flex:1;min-width:0"><b style="font-size:15px">Panic</b><div style="font-size:12px;opacity:.86">Alert your recovery team now</div></div>
+        <div style="flex:1;min-width:0"><b style="font-size:15px">Panic</b><div style="font-size:12px;opacity:.86">Call the 988 crisis line</div></div>
         ${ic('chevron-right',{s:19,w:2.2})}
       </div>
       <div class="glassrow gold" data-relapse="1">
@@ -1305,7 +1305,6 @@ S.help = ()=>page(`<div class="pad" style="padding-top:8px">
   ${hotlineCard(HOTLINES)}
 
   ${sechead('History')}
-  ${lrow('history','sand','Panic Event Log','View support activation history','data-go="panic-log"')}
   <div style="height:8px"></div>
 </div>`,{nav:'help'});
 
@@ -1331,8 +1330,8 @@ S.relapse = ()=>page(`${bar('I Have Relapsed','help')}<div class="pad">
   <div style="height:8px"></div>
 </div>`);
 
-/* ---------- PANIC · CONFIRMED (in California) ---------- */
-S['panic-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="padding-top:20px">
+/* ---------- RELAPSED outcome screens — same flow as Panic, own entries ---------- */
+S['relapse-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="padding-top:20px">
   <div style="text-align:center">
     <div style="width:78px;height:78px;margin:0 auto;border-radius:50%;background:var(--sage-soft);color:var(--sage-deep);
          display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(88,106,79,.14)">${ic('hand-heart',{s:34,w:1.8})}</div>
@@ -1341,9 +1340,7 @@ S['panic-confirm'] = ()=>page(`${bar('Support Requested','help')}<div class="pad
     <div class="muted" style="font-size:14px;margin-top:10px;line-height:1.62;max-width:300px;margin-left:auto;margin-right:auto">We're so sorry you're going through this. The ${ORG.name} team has been notified and will reach out very soon - you don't have to face this alone.</div>
   </div>
   <div style="height:8px"></div></div>`);
-
-/* ---------- PANIC · OUTSIDE California (National Rehab Foundation) ---------- */
-S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="padding-top:14px">
+S['relapse-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad" style="padding-top:14px">
   <div class="center-t">
     <div style="width:78px;height:78px;margin:0 auto;border-radius:50%;background:var(--rose-tint);color:var(--rose-deep);
          display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(154,109,92,.12)">${ic('heart-pulse',{s:34,w:1.8})}</div>
@@ -1360,20 +1357,7 @@ S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad
     <div class="muted" style="font-size:12.5px;margin-top:10px;line-height:1.55">They'll support you and help you find care near you.</div>
     <a href="${telClean(NATIONAL.phone)}" style="text-decoration:none;display:block;margin-top:16px"><button class="btn btn-primary">${ic('phone',{s:18})}Call now</button></a>
   </div>
-
-  ${crisisNote(`In a crisis, call <b style="color:var(--charcoal)">911</b> or the <b style="color:var(--charcoal)">988</b> Suicide &amp; Crisis Lifeline any time.`)}
   <div style="height:8px"></div>
-</div>`);
-
-/* ---------- PANIC EVENT LOG ---------- */
-/* ---------- RELAPSED outcome screens — same flow as Panic, own entries ---------- */
-S['relapse-confirm'] = ()=>S['panic-confirm']();
-S['relapse-outside'] = ()=>S['panic-outside']();
-
-S['panic-log'] = ()=>page(`${bar('Panic Event Log','help')}<div class="pad">
-  <div class="muted" style="font-size:13px">A private record of the times you reached out for support.</div>
-  ${[['Today, 9:14 AM','Called '+ORG.name,'Connected','phone'],['Aug 2, 7:48 PM','Emailed '+ORG.name,'Replied','mail'],['Jul 28, 11:02 PM','Called '+ORG.name,'Connected','phone']].map(([when,what,st,n])=>`<div class="card" style="margin-top:11px;display:flex;align-items:center;gap:13px">${icoBox(n,'sage')}<div style="flex:1"><b style="font-size:14px;color:var(--charcoal)">${what}</b><div class="muted" style="font-size:12px">${when}</div></div><span class="pill" style="background:var(--sage-soft);color:var(--sage-deep)">${st}</span></div>`).join('')}
-  <div style="margin-top:14px;font-size:12px;color:var(--ink-faint);text-align:center">Only you can see this log.</div>
 </div>`);
 
 /* ---------- COMMUNITY (tab) ---------- */
@@ -1563,7 +1547,7 @@ const ORDER=[
   ['— Trigger —',null],['trigger-home','Trigger · Home'],['trigger-1','Trigger · Step 1'],['trigger-2','Trigger · Step 2'],['trigger-3','Trigger · Logged'],['trigger-history','Trigger History'],
   ['— Journal —',null],['journal','Journal'],['journal-new','Journal · New Entry'],
   ['— Safety —',null],['safety','Safety Plan'],['safety-edit','Safety Plan · Edit'],
-  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['panic-confirm','Panic · Confirmed (CA)'],['panic-outside','Panic · Outside CA'],['relapse-confirm','Relapsed · Confirmed (CA)'],['relapse-outside','Relapsed · Outside CA'],['panic-log','Panic Event Log'],
+  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['relapse-confirm','Relapsed · Confirmed (CA)'],['relapse-outside','Relapsed · Outside CA'],
   ['— Community —',null],['community','Community'],['community-comments','Comments'],['community-new','New Post'],
   ['— Profile —',null],['profile','Profile'],['profile-assessments','Assessment History'],['profile-saved','Saved Statements'],['profile-contacts','Emergency Contacts'],
   ['— Wellness —',null],['wellness','Wellness Tools'],['breathwork','Breathwork · Guided'],['wellness-detail','Wellness · Detail'],['wellness-player','Wellness · Player'],['wellness-complete','Session Complete'],
@@ -1755,8 +1739,8 @@ vp.addEventListener('click', e=>{
   const tv=e.target.closest('[data-triglevel]'); if(tv){ state.trigLevel=tv.getAttribute('data-triglevel'); vp.innerHTML=S[current](); persist(); return; }
   const tl=e.target.closest('[data-tool]'); if(tl){ state.tool=tl.getAttribute('data-tool'); }
   const md=e.target.closest('[data-mode]'); if(md){ state.mode=md.getAttribute('data-mode'); }
-  const sl=e.target.closest('[data-simloc]'); if(sl){ state.simLoc=sl.getAttribute('data-simloc'); show(detectLocation()==='California'?'panic-confirm':'panic-outside', false); return; }
-  const pn=e.target.closest('[data-panic]'); if(pn){ show(detectLocation()==='California'?'panic-confirm':'panic-outside'); return; }
+  const sl=e.target.closest('[data-simloc]'); if(sl){ state.simLoc=sl.getAttribute('data-simloc'); show(detectLocation()==='California'?'relapse-confirm':'relapse-outside', false); return; }
+  const cl=e.target.closest('[data-call]'); if(cl){ location.href='tel:'+cl.getAttribute('data-call'); return; }
   const rp=e.target.closest('[data-relapse]'); if(rp){ show(detectLocation()==='California'?'relapse-confirm':'relapse-outside'); return; }
   const go=e.target.closest('[data-go]'); if(go){ show(go.getAttribute('data-go')); return; }
   const pick=e.target.closest('[data-pick]'); if(pick){ QUESTIONS[state.assess].sel=+pick.getAttribute('data-pick'); vp.innerHTML=S.assess(); persist(); return; }
