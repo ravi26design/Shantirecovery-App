@@ -1293,7 +1293,7 @@ S.help = ()=>page(`<div class="pad" style="padding-top:8px">
         <div style="flex:1;min-width:0"><b style="font-size:15px">Panic</b><div style="font-size:12px;opacity:.86">Alert your recovery team now</div></div>
         ${ic('chevron-right',{s:19,w:2.2})}
       </div>
-      <div class="glassrow gold" data-panic="1">
+      <div class="glassrow gold" data-relapse="1">
         <div class="gi">${ic('life-buoy',{s:20,w:2})}</div>
         <div style="flex:1;min-width:0"><b style="font-size:15px">I've Relapsed</b><div style="font-size:12px;opacity:.9">Immediate support, no judgement</div></div>
         ${ic('chevron-right',{s:19,w:2.2})}
@@ -1366,6 +1366,10 @@ S['panic-outside'] = ()=>page(`${bar('Support Requested','help')}<div class="pad
 </div>`);
 
 /* ---------- PANIC EVENT LOG ---------- */
+/* ---------- RELAPSED outcome screens — same flow as Panic, own entries ---------- */
+S['relapse-confirm'] = ()=>S['panic-confirm']();
+S['relapse-outside'] = ()=>S['panic-outside']();
+
 S['panic-log'] = ()=>page(`${bar('Panic Event Log','help')}<div class="pad">
   <div class="muted" style="font-size:13px">A private record of the times you reached out for support.</div>
   ${[['Today, 9:14 AM','Called '+ORG.name,'Connected','phone'],['Aug 2, 7:48 PM','Emailed '+ORG.name,'Replied','mail'],['Jul 28, 11:02 PM','Called '+ORG.name,'Connected','phone']].map(([when,what,st,n])=>`<div class="card" style="margin-top:11px;display:flex;align-items:center;gap:13px">${icoBox(n,'sage')}<div style="flex:1"><b style="font-size:14px;color:var(--charcoal)">${what}</b><div class="muted" style="font-size:12px">${when}</div></div><span class="pill" style="background:var(--sage-soft);color:var(--sage-deep)">${st}</span></div>`).join('')}
@@ -1559,7 +1563,7 @@ const ORDER=[
   ['— Trigger —',null],['trigger-home','Trigger · Home'],['trigger-1','Trigger · Step 1'],['trigger-2','Trigger · Step 2'],['trigger-3','Trigger · Logged'],['trigger-history','Trigger History'],
   ['— Journal —',null],['journal','Journal'],['journal-new','Journal · New Entry'],
   ['— Safety —',null],['safety','Safety Plan'],['safety-edit','Safety Plan · Edit'],
-  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['panic-confirm','Panic · Confirmed (CA)'],['panic-outside','Panic · Outside CA'],['panic-log','Panic Event Log'],
+  ['— Help —',null],['help','Help'],['relapse','I Have Relapsed'],['panic-confirm','Panic · Confirmed (CA)'],['panic-outside','Panic · Outside CA'],['relapse-confirm','Relapsed · Confirmed (CA)'],['relapse-outside','Relapsed · Outside CA'],['panic-log','Panic Event Log'],
   ['— Community —',null],['community','Community'],['community-comments','Comments'],['community-new','New Post'],
   ['— Profile —',null],['profile','Profile'],['profile-assessments','Assessment History'],['profile-saved','Saved Statements'],['profile-contacts','Emergency Contacts'],
   ['— Wellness —',null],['wellness','Wellness Tools'],['breathwork','Breathwork · Guided'],['wellness-detail','Wellness · Detail'],['wellness-player','Wellness · Player'],['wellness-complete','Session Complete'],
@@ -1753,6 +1757,7 @@ vp.addEventListener('click', e=>{
   const md=e.target.closest('[data-mode]'); if(md){ state.mode=md.getAttribute('data-mode'); }
   const sl=e.target.closest('[data-simloc]'); if(sl){ state.simLoc=sl.getAttribute('data-simloc'); show(detectLocation()==='California'?'panic-confirm':'panic-outside', false); return; }
   const pn=e.target.closest('[data-panic]'); if(pn){ show(detectLocation()==='California'?'panic-confirm':'panic-outside'); return; }
+  const rp=e.target.closest('[data-relapse]'); if(rp){ show(detectLocation()==='California'?'relapse-confirm':'relapse-outside'); return; }
   const go=e.target.closest('[data-go]'); if(go){ show(go.getAttribute('data-go')); return; }
   const pick=e.target.closest('[data-pick]'); if(pick){ QUESTIONS[state.assess].sel=+pick.getAttribute('data-pick'); vp.innerHTML=S.assess(); persist(); return; }
   const nx=e.target.closest('[data-next]'); if(nx){ if(state.assess<4){ state.assess++; vp.innerHTML=S.assess(); persist(); } else { show('complete'); } return; }
