@@ -15,7 +15,7 @@
 <style>
   :root{
     /* blush — the primary brand accent */
-    --rose:#C9A49E; --rose-deep:#98685F; --rose-soft:#E6CDC8; --rose-tint:#F1DEDA; --rose-wash:#FBF1EE;
+    --rose:#C7A1A0; --rose-deep:#955F5B; --rose-soft:#E7CDCC; --rose-tint:#F2DEDD; --rose-wash:#FBF1F0;
     /* ink */
     --charcoal:#2F2B28; --ink:#2A2724; --ink-soft:#6B605A; --ink-faint:#A2958C;
     /* sage — the calm/secondary accent */
@@ -23,8 +23,8 @@
     /* off-white surfaces + blush sand */
     /* --screen is the flat app canvas; cards sit on it in pure white.
        Keeping the canvas FLAT (no gradients) is what makes the cards read crisply. */
-    --white:#FFFFFF; --screen:#F3F0EC; --off-white:#FDFAF6; --cream:#FDFAF6;
-    --sand:#EFE7E2; --sand-deep:#E2D6D0;
+    --white:#FFFFFF; --screen:#F3EFEE; --off-white:#FDF9F9; --cream:#FDF9F9;
+    --sand:#EFE6E4; --sand-deep:#E1D6D3;
     --line:#EDE6DE; --line-soft:#F4EEE8; --panel:#F7F1EA;
     --gold:#C9913D; --gold-soft:#FBEBD3; --crisis:#B85345; --good:#63855E;
     --lav:#A99BC9; --lav-soft:#E7E0F1; --lav-wash:#F3EFF9;
@@ -58,9 +58,9 @@
   *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   body{ font-family:"Inter",system-ui,sans-serif; color:var(--ink); position:relative;
     background:
-      radial-gradient(880px 520px at 12% -8%, rgba(201,164,158,.40), transparent 62%),
+      radial-gradient(880px 520px at 12% -8%, rgba(199,161,160,.38), transparent 62%),
       radial-gradient(720px 560px at 106% 6%, rgba(140,156,132,.17), transparent 58%),
-      linear-gradient(180deg,#F6EFEC 0%,#E9DAD5 52%,#DFCFCA 100%);
+      linear-gradient(180deg,#F6EFEE 0%,#E8D9D7 52%,#DDCECC 100%);
     background-attachment:fixed; min-height:100vh;
     display:flex; flex-direction:column; align-items:center; gap:16px; padding:26px 16px 60px; -webkit-font-smoothing:antialiased; }
   body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
@@ -190,7 +190,7 @@
   .advice .by{ margin-top:12px; font-size:12.5px; color:var(--ink-faint); }
   .advice .art{ position:relative; width:104px; height:104px; flex:none; }
   .advice .art .sun{ position:absolute; inset:0; border-radius:50%;
-    background:radial-gradient(circle at 50% 42%, #FDEFE3 0%, #F3CFB5 56%, rgba(240,196,168,0) 75%); }
+    background:radial-gradient(circle at 50% 42%, #FBEEEC 0%, #EBCDC7 56%, rgba(230,196,190,0) 75%); }
   .advice .art svg{ position:absolute; left:50%; top:56%; transform:translate(-50%,-50%); width:80px; height:auto; fill:var(--rose-deep); }
   .advice .art svg path{ fill:var(--rose-deep); }
 
